@@ -16,7 +16,7 @@ class Provider:
       left join Person p1 on lch."Person" = p1.id
       left join Person p2 on lch."connectionPersonId" = p2.id
     where lch."Person" = {user_id}
-      and lch."dateFinished" is not null
+      and status = 1
                 """
         return Sql.exec(query=query, args=args)
 
@@ -139,10 +139,11 @@ class Provider:
       select lunch_id
       from lunch
       where
-        Person = {user_id}
+        "Person" = {user_id}
         and status <> 3
       order by "DateCreation" desc 
       limit 1
     )
         """
         return Sql.exec(query=query, args=args)
+

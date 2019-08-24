@@ -8,7 +8,9 @@ class BaseEvent(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = [names.ID_USER]
+        self.args = [names.TITTLE, names.PLACE,
+                     names.PHOTO, names.DESCRIPTION, names.DATE,
+                     names.CREATOR, names.MAX_PERSON, names.PERSON_ID, names.EVENT_ID ]
 
 
 class EventAll(BaseEvent):

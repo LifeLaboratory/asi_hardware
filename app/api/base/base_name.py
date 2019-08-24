@@ -5,7 +5,7 @@ SUCCESS = "Success"
 ANSWER = "Answer"
 SESSION = 'session'
 
-DESCRIPTION = "Description"
+DESCRIPTION = "description"
 DATA = "data"
 COMPANY = "Company"
 LOGIN = "login"
@@ -62,3 +62,34 @@ base_user = {
     'city':None,
     'contacts':None
 }
+
+base_cors = {'Access-Control-Allow-Origin': '*', \
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
+                }
+
+status_to_name = {
+    0: "pending" ,
+    1: "approved" ,
+    2: "declined" ,
+    3: "finished"
+
+}
+
+name_to_status = {
+    "pending":0,
+    "approved":1,
+    "declined":2,
+    "finished":3
+}
+
+STATUS = "status"
+
+TITTLE = 'title'
+PLACE = 'place'
+PHOTO = 'photo'
+DATE = 'date'
+CREATOR = 'creator'
+MAX_PERSON = 'maxPerson'
+
+PERSON_ID = 'personId'

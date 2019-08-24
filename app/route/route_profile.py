@@ -15,7 +15,10 @@ class Profile(BaseRouter):
             names.ID_USER: user_id
         }
         answer = get_profile(args)
-        return answer or {}, 200, {'Access-Control-Allow-Origin': '*'}
+        return answer or {}, 200, {'Access-Control-Allow-Origin': '*', \
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
+                }
 
     def post(self):
 
@@ -25,7 +28,10 @@ class Profile(BaseRouter):
             answer = set_profile(self.data)
         except:
             pass
-        return answer or {}
+        return answer or {}, 200, {'Access-Control-Allow-Origin': '*', \
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
+                }
 
     def put(self):
 
@@ -35,7 +41,10 @@ class Profile(BaseRouter):
             answer = put_profile(self.data)
         except:
             pass
-        return (answer or {})
+        return (answer or {}), 200, {'Access-Control-Allow-Origin': '*', \
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
+                }
 
     def options(self):
         return {'Allow': 'PUT'}, 200, \

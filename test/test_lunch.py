@@ -13,7 +13,7 @@ class TestLunch(unittest.TestCase):
 
 
         }
-        id_user = Provider.set_profile(args=names.base_user)
+        # id_user = Provider.set_profile(args=names.base_user)
         id_user = 5
         print(id_user)
         headers = {names.ID_USER: id_user}

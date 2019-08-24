@@ -9,7 +9,7 @@ def base_func(provider, user_data):
     :user_data: данные
     '''
     answer = provider(user_data)
-    if isinstance(answer, list):
+    if isinstance(answer, list) and len(answer) > 0:
         answer = answer[0]
     return answer
 
@@ -25,5 +25,10 @@ def lunch_set(user_data):
     provider = Provider()
     base_func(provider.set_lunch, user_data)
     return base_func(provider.find_pair, user_data)
+
+def lunch_status_set(user_data):
+    provider = Provider()
+    return base_func(provider.set_lunch_status, user_data)
+
 
 

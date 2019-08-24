@@ -14,9 +14,11 @@ class BaseRouter(Resource):
 
 
     def _read_args(self):
+        if not bool(self.data):
+            self.data = {}
         for arg in self.args:
             self._parser.add_argument(arg)
-        self.data = self._parser.parse_args()
+        self.data.update(self._parser.parse_args())
 
     def get(self):
         return "OK", 200, {'Access-Control-Allow-Origin': '*'}
