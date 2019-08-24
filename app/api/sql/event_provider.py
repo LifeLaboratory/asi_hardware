@@ -34,7 +34,7 @@ class Provider:
       {place},
       {photo},
       {description},
-      {date},
+      {date}::text,
       {creator},
       {maxPerson}
     )
@@ -55,7 +55,7 @@ class Provider:
       place = {place},
       photo = {photo},
       description = {description}, 
-      "date" = {date}
+      "date" = {date}::text
     where event_id = {eventId}
                 """
         return Sql.exec(query=query, args=args)
