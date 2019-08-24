@@ -51,6 +51,11 @@ class Provider:
 
     @staticmethod
     def find_pair(args):
+        """
+        Находит пару пользователю и обновляет записи у обоих пользователей
+        :param args:
+        :return:
+        """
         query = """
     with get_pair as (
     -- поиск записи пары
@@ -85,14 +90,36 @@ class Provider:
     )
     -- отбор нужной записи
     select 
-        p1::json "person"
-      , p2::json "connectionPersonId"
+        row_to_json(p1) "person"
+      , row_to_json(p2) "connectionPersonId"
       , status
       , dateMatched
       , dateFinished  
     from create_link lch
-      left Person p1 on lch."Person" = p1."@Person"
-      left Person p2 on lch."ConnectedPerson" = p2."@Person"
+      left join Person p1 on lch."Person" = p1.id
+      left join Person p2 on lch."connectionPersonId" = p2.id
     where lch."Person" = {user_id}  
+        """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def set_lunch_status(args):
+        """
+        Установка статуса последней записи у пользователя
+        :param args:
+        :return:
+        """
+        query = """
+    update lunch
+    set status={status}
+    where lunch_id in (
+      select lunch_id
+      from lunch
+      where
+        Person = {user_id}
+        and status <> 3
+      order by "DateCreation" desc 
+      limit 1
+    )
         """
         return Sql.exec(query=query, args=args)
