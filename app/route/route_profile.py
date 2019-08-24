@@ -8,7 +8,7 @@ class Profile(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = [names.LOGIN, names.PASSWORD]
+        self.args = [names.ID_USER]
 
     def get(self, id_user):
         args = {
