@@ -94,8 +94,8 @@ class Provider:
           from event_person ep 
           where ep.event_id = e.event_id
         ) count_person
-    from event
-    where event_id = {eventId}
+    from event e
+    where event_id = {event_id}
                 """
         return Sql.exec(query=query, args=args)
 

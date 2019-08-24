@@ -30,7 +30,7 @@ class Event(BaseEvent):
     def get(self):
 
         self.data.update({'event_id': self.headers[names.front_event_id]})
-        self._read_args()
+        # self._read_args()
         answer = {}
         try:
             answer = event_get(self.data)

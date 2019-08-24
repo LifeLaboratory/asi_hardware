@@ -19,7 +19,7 @@ def event_get(user_data):
 
 def event_get_all(user_data):
     provider = Provider()
-    return base_func(provider.get_all_events, user_data)
+    return provider.get_all_events(user_data)
 
 def event_get_active(user_data):
     provider = Provider()
