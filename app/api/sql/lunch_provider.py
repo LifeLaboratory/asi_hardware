@@ -96,16 +96,32 @@ class Provider:
       returning *
     )
     -- отбор нужной записи
-    select 
-        row_to_json(p1) "person"
-      , row_to_json(p2) "connectionPersonId"
-      , status
-      , "dateMatched" ::text
-      , "dateFinished" ::text
-    from create_link lch
-      left join Person p1 on lch."Person" = p1.id
-      left join Person p2 on lch."connectionPersonId" = p2.id
-    where lch."Person" = {user_id}  
+    select *
+    from (
+      -- отбор нужной записи
+      select 
+          row_to_json(p1) "person"
+        , row_to_json(p2) "connectionPersonId"
+        , status
+        , "dateMatched" ::text
+        , "dateFinished" ::text
+      from create_link lch
+        left join Person p1 on lch."Person" = p1.id
+        left join Person p2 on lch."connectionPersonId" = p2.id
+      where lch."Person" = {user_id}  
+      union all
+      select 
+          row_to_json(p1) "person"
+        , row_to_json(p2) "connectionPersonId"
+        , status
+        , "dateMatched" ::text
+        , "dateFinished" ::text
+      from Lunch lch
+        left join Person p1 on lch."Person" = p1.id
+        left join Person p2 on lch."connectionPersonId" = p2.id
+      where lch."Person" = {user_id} and status = 0 
+    ) q
+    limit 1 
         """
         return Sql.exec(query=query, args=args)
 
