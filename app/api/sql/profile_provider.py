@@ -12,3 +12,30 @@ class Provider:
     """
         # print(query)
         return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def set_profile(args):
+        query = """
+    insert into person(
+      firstName, 
+      lastName, 
+      role, 
+      "birthDate", 
+      company, 
+      about, 
+      photo, 
+      city, 
+      contacts
+    )
+    values (
+      {} -- firstName
+      , {} -- lastName
+      , coalesce({}, 0) -- role
+      , coalesce({}, now()) -- birthDate
+      , {} -- company
+      , {} -- about
+      , {} -- photo
+      , {} -- city
+      , {} -- contacts
+    )
+        """

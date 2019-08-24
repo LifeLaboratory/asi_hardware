@@ -40,7 +40,7 @@ class Provider:
     def set_lunch(args):
         query = """
     insert into Lunch
-    values (
+    (
       "Person",
        "DateCreation",
        status
