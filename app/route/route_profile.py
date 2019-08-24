@@ -16,3 +16,23 @@ class Profile(BaseRouter):
         }
         answer = get_profile(args)
         return answer or {}
+
+    def post(self):
+
+        self._read_args()
+        answer = {}
+        try:
+            answer = set_profile(self.data)
+        except:
+            pass
+        return answer or {}
+
+    def put(self):
+
+        self._read_args()
+        answer = {}
+        try:
+            answer = put_profile(self.data)
+        except:
+            pass
+        return answer or {}
