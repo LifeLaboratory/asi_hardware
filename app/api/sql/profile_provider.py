@@ -19,7 +19,7 @@ class Provider:
     insert into person(
       firstName, 
       lastName, 
-      role, 
+      "role", 
       "birthDate", 
       company, 
       about, 
@@ -28,14 +28,32 @@ class Provider:
       contacts
     )
     values (
-      {} -- firstName
-      , {} -- lastName
-      , coalesce({}, 0) -- role
-      , coalesce({}, now()) -- birthDate
-      , {} -- company
-      , {} -- about
-      , {} -- photo
-      , {} -- city
-      , {} -- contacts
+        {first_name} -- firstName
+      , {last_name} -- lastName
+      , coalesce({role}, 0) -- role
+      , coalesce({birth_day}, now()) -- birthDate
+      , {company} -- company
+      , {about} -- about
+      , {photo} -- photo
+      , {city} -- city
+      , {contacts} -- contacts
     )
         """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def update_profile(args):
+        query = """
+    update person
+    set firstName = {first_name}
+      , lastName = {last_name}
+      , "role" = coalesce({role}, 0)
+      , "birthDate" = coalesce({birth_day}, now())
+      , company = {company}
+      , about = {about}
+      , photo = {photo}
+      , city = {city}
+      , contacts = {contacts}
+    where id = {id_user}
+        """
+        return Sql.exec(query=query, args=args)
