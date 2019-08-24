@@ -67,6 +67,16 @@ class Provider:
       order by "DateCreation"
       limit 1
     ),
+    update_id as (
+      select lunch_id
+        from get_pair
+        union all 
+        select lunch_id
+        from Lunch
+        where 
+          status = 0
+          and "Person" = {user_id} 
+    ),
     create_link as (
       -- обновление информации в двух записях
       update Lunch
@@ -77,15 +87,12 @@ class Provider:
             else {user_id} end
         ,  "dateMatched" = now()
       where lunch_id in (
-        select lunch_id
-        from get_pair
-        union all 
-        select lunch_id
-        from Lunch
-        where 
-          status = 0
-          and "Person" = {user_id}
+        select lunch_id from update_id
       )
+      and coalesce((
+        select count(1)
+        from update_id
+      ), 0) = 2
       returning *
     )
     -- отбор нужной записи
