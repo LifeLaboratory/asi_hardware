@@ -48,3 +48,17 @@ STATUS_AUTH_FAILED = 106
 
 front_user_id = "User_Id"
 front_event_id = "Event_Id"
+
+
+base_user = {
+    'firstName':None,
+    'lastName':None,
+    'last_name':None,
+    'role':None,
+    'birhDate':None,
+    'company':None,
+    'about':None,
+    'photo':None,
+    'city':None,
+    'contacts':None
+}
