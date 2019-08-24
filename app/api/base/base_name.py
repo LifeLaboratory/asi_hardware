@@ -47,3 +47,4 @@ STATUS_SQL_ERROR = 105
 STATUS_AUTH_FAILED = 106
 
 front_user_id = "User_Id"
+front_event_id = "Event_Id"
