@@ -1,5 +1,5 @@
 # coding=utf-8
-from app.api.sql.profile_provider import Provider
+from app.api.sql.event_provider import Provider
 
 
 def base_func(provider, user_data):
@@ -13,14 +13,12 @@ def base_func(provider, user_data):
         answer = answer[0]
     return answer
 
-def get_profile (user_data):
-    provider = Provider()
-    return base_func(provider.get_profile, user_data)
+def event_get_all_id(user_data):
 
-def set_profile(user_data):
     provider = Provider()
-    return base_func(provider.set_profile, user_data)
+    return base_func(provider.get_all_id, user_data)
 
-def put_profile(user_data):
+def event_get_active_id(user_data):
+
     provider = Provider()
-    return base_func(provider.put_profile, user_data)
+    return base_func(provider.get_active_id, user_data)
