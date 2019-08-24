@@ -6,7 +6,7 @@ class Provider:
     def check_user(args):
         query = """
   select 1
-  from users
+  from Pesrson
   where ("login" = '{login}'
     and "password" = '{password}'
     )
@@ -16,11 +16,11 @@ class Provider:
     @staticmethod
     def register_user(args):
         query = """
-    insert into "users"("login", "password", "name") 
+    insert into "Person"("login", "password", "Name") 
     VALUES ('{login}', 
     '{password}', 
     '{name}')
-    returning id_user
+    returning "@Person"
     """
         print(query)
         return Sql.exec(query=query, args=args)

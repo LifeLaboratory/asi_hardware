@@ -5,8 +5,8 @@ class Provider:
     @staticmethod
     def auth_user(args):
         query = """
-    select id_user
-    from users
+    select "@Person"
+    from Person
     where ("login" = '{login}'
       and "password" = '{password}'
       )
