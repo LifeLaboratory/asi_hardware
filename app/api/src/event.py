@@ -13,10 +13,10 @@ def base_func(provider, user_data):
         answer = answer[0]
     return answer
 
-def event_get_all_id(user_data):
+def event_get_all(user_data):
 
     provider = Provider()
-    return base_func(provider.get_all_id, user_data)
+    return base_func(provider.get_all_events, user_data)
 
 def event_get_active_id(user_data):
 

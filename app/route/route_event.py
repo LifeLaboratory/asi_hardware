@@ -1,6 +1,6 @@
 # coding=utf-8
 from app.api.base import base_name as names
-from app.api.src.event import event_get_active_id, event_get_all_id
+from app.api.src.event import event_get_active_id, event_get_all
 from app.api.base.base_router import BaseRouter
 
 
@@ -18,7 +18,7 @@ class EventAll(BaseEvent):
         self._read_args()
         answer = {}
         try:
-            answer = event_get_all_id(self.data)
+            answer = event_get_all(self.data)
         except:
             pass
         return answer or {}
