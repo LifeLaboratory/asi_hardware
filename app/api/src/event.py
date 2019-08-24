@@ -22,3 +22,8 @@ def event_get_active_id(user_data):
 
     provider = Provider()
     return base_func(provider.get_active_id, user_data)
+
+def event_set(user_data):
+
+    provider = Provider()
+    return base_func(provider.set_event, user_data)

@@ -1,6 +1,6 @@
 # coding=utf-8
 from app.api.base import base_name as names
-from app.api.src.event import event_get_active_id, event_get_all
+from app.api.src.event import event_get_active_id, event_get_all, event_set
 from app.api.base.base_router import BaseRouter
 
 
@@ -32,6 +32,16 @@ class Event(BaseEvent):
         answer = {}
         try:
             answer = event_get_active_id(self.data)
+        except:
+            pass
+        return answer or {}
+
+    def post(self):
+
+        self._read_args()
+        answer = {}
+        try:
+            answer = event_set(self.data)
         except:
             pass
         return answer or {}
