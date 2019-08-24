@@ -28,7 +28,7 @@ class Lunch(BaseLunch):
 
     def get(self):
 
-        self._read_args()
+        self.data.update({'user_id': self.headers[names.front_user_id]})
         answer = {}
         try:
             answer = lunch_get_active_id(self.data)

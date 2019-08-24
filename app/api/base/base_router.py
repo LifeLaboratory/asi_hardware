@@ -8,8 +8,10 @@ class BaseRouter(Resource):
     def __init__(self):
         self.args = None
         self.data = dict()
-
+        self.headers =reqparse.request.headers
+        print(self.headers)
         self._parser = reqparse.RequestParser()
+
 
     def _read_args(self):
         for arg in self.args:

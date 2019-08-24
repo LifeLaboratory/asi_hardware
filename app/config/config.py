@@ -1,9 +1,9 @@
 HEADER = {'Access-Control-Allow-Origin': '*'}
 DATABASE = {
-    "dbname": "skb_anton",
-    "user": "skb_anton",
+    "dbname": "hack_business_community",
+    "user": "postgres",
     "host": "90.189.168.29",
-    "password": "PINLOX!@#"
+    "password": "postgres"
 }
 
-HOST = "http://90.189.168.29"
+HOST = "http://0.0.0.0:8080"

@@ -34,7 +34,7 @@ LOGO = "logo"
 UUID = "UUID"
 PAGE = "page"
 ID_NEWS = "id_news"
-
+HEADER = "http_"
 
 ERROR_EXECUTE_DATABASE = "Fatal error: execute database"
 ERROR_CONNECT_DATABASE = "Error connect database"
@@ -45,3 +45,5 @@ STATUS_CONVERTER = 103
 STATUS_CHECK_DATA = 104
 STATUS_SQL_ERROR = 105
 STATUS_AUTH_FAILED = 106
+
+front_user_id = "User_Id"
