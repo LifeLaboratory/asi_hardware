@@ -1,19 +1,20 @@
+# coding=utf-8
 from app.api.base.base_sql import Sql
 
 
 class Provider:
     @staticmethod
     def get_active_id(args):
-        query = """
+        query = """     
     select 
-        p1::json "person"
-      , p2::json "connectionPersonId"
+        row_to_json(p1) "person"
+      , row_to_json(p2) "connectionPersonId"
       , status
-      , dateMatched
-      , dateFinished  
+      , "dateMatched"
+      , "dateFinished"  
     from Lunch lch
-      left Person p1 on lch."Person" = p1."@Person"
-      left Person p2 on lch."ConnectedPerson" = p2."@Person"
+      left join Person p1 on lch."Person" = p1.id
+      left join Person p2 on lch."connectionPersonId" = p2.id
     where lch."Person" = {user_id}
       and lch."dateFinished" is not null
                 """
@@ -23,14 +24,14 @@ class Provider:
     def get_all_id(args):
         query = """
     select 
-        p1::json "person"
-      , p2::json "connectionPersonId"
+        row_to_json(p1) "person"
+      , row_to_json(p2) "connectionPersonId"
       , status
-      , dateMatched
-      , dateFinished    
+      , "dateMatched"
+      , "dateFinished"  
     from Lunch lch
-      left Person p1 on lch."Person" = p1."@Person"
-      left Person p2 on lch."ConnectedPerson" = p2."@Person"
+      left join Person p1 on lch."Person" = p1.id
+      left join Person p2 on lch."connectionPersonId" = p2.id
     where lch."Person" = {user_id}
                 """
         return Sql.exec(query=query, args=args)
