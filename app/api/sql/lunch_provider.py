@@ -37,7 +37,7 @@ class Provider:
         return Sql.exec(query=query, args=args)
 
     @staticmethod
-    def set_event(args):
+    def set_lunch(args):
         query = """
     insert into Lunch
     values (
@@ -66,7 +66,10 @@ class Provider:
       -- обновление информации в двух записях
       update Lunch
       set status = 1
-        , "ConnectionPersonId" = case when "Person" = {user_id} then (select "Person" from get_pair) else {user_id} end
+        , "ConnectionPersonId" = 
+            case when "Person" = {user_id} 
+            then (select "Person" from get_pair) 
+            else {user_id} end
         ,  "dateMatched" = now()
       where lunch_id in (
         select lunch_id
