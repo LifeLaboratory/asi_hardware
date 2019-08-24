@@ -82,7 +82,7 @@ name_to_status = {
     "declined":2,
     "finished":3
 }
-
+EVENT_ID = 'event_id'
 STATUS = "status"
 
 TITTLE = 'title'

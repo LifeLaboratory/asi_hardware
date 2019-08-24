@@ -17,10 +17,9 @@ class EventAll(BaseEvent):
 
     def get(self):
 
-        self._read_args()
         answer = {}
         try:
-            answer = event_get_all(self.data)
+            answer = event_get_all({})
         except:
             pass
         return answer or {}

@@ -55,6 +55,7 @@ class Provider:
       place = {place},
       photo = {photo},
       description = {description}, 
+      max_person = {maxPerson},
       "date" = {date}::text
     where event_id = {eventId}
                 """
