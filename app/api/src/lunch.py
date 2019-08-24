@@ -23,6 +23,7 @@ def lunch_get_active_id(user_data):
 
 def lunch_set(user_data):
     provider = Provider()
-    return base_func(provider.set_lunch, user_data)
+    base_func(provider.set_lunch, user_data)
+    return base_func(provider.find_pair, user_data)
 
 
