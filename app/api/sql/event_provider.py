@@ -6,14 +6,13 @@ class Provider:
     @staticmethod
     def get_all_events(args):
         query = """
-    select
-      event_id,
-      title,
-      place,
-      photo,
-      description,
-      "date"
-    from event
+    select *
+      , (
+          select count(1) 
+          from event_person ep 
+          where ep.event_id = e.event_id
+        ) count_person
+    from event e
                 """
         return Sql.exec(query=query, args=args)
 
@@ -26,14 +25,18 @@ class Provider:
       place,
       photo,
       description,
-      "date"
+      "date",
+      creator,
+      max_person
     )
     values (
       {title},
       {place},
       {photo},
       {description},
-      {date}
+      {date},
+      {creator},
+      {maxPerson}
     )
                 """
         return Sql.exec(query=query, args=args)
@@ -56,3 +59,42 @@ class Provider:
     where event_id = {eventId}
                 """
         return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def get_active(args):
+        """
+        метод возвращающий активные на текущий момент ивенты
+        :param args:
+        :return:
+        """
+        query = """
+    select *
+      , (
+          select count(1) 
+          from event_person ep 
+          where ep.event_id = e.event_id
+        ) count_person
+    from event
+    where "date"::date >= now()::date
+                """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def get_event(args):
+        """
+        метод возвращающий данные конкретного ивента
+        :param args:
+        :return:
+        """
+        query = """
+    select *
+      , (
+          select count(1) 
+          from event_person ep 
+          where ep.event_id = e.event_id
+        ) count_person
+    from event
+    where event_id = {eventId}
+                """
+        return Sql.exec(query=query, args=args)
+
