@@ -71,7 +71,7 @@ class EventAdd(BaseEvent):
         return answer or {}
 
 
-class EventAll(BaseEvent):
+class EventActive(BaseEvent):
 
     def get(self):
 

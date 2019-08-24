@@ -12,7 +12,7 @@ from app.route.route_list import ROUTES
 _app = flask.Flask(__name__)
 _app.config['JSON_AS_ASCII'] = False
 api = Api(_app)
-HEADER = {'Access-Control-Allow-Origin': '*'}
+HEADER = {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': '*'}
 
 
 @_app.errorhandler(404)

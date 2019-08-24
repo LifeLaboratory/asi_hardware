@@ -38,7 +38,7 @@ class Lunch(BaseLunch):
 
     def post(self):
 
-        self._read_args()
+        self.data.update({'user_id': self.headers[names.front_user_id]})
         answer = {}
         try:
             answer = lunch_set(self.data)

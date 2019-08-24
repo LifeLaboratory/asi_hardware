@@ -8,9 +8,9 @@ class Provider:
         query = """
     select *
     from Person
-    where id = {id_user}
+    where id = {user_id}
     """
-        # print(query)
+        print(query)
         return Sql.exec(query=query, args=args)
 
     @staticmethod
@@ -28,32 +28,17 @@ class Provider:
       contacts
     )
     values (
-        {first_name} -- firstName
-      , {last_name} -- lastName
+        {firstName} -- firstName
+      , {lastName} -- lastName
       , coalesce({role}, 0) -- role
-      , coalesce({birth_day}, now()) -- birthDate
+      , coalesce({birthDay}, now()) -- birthDate
       , {company} -- company
       , {about} -- about
       , {photo} -- photo
       , {city} -- city
       , {contacts} -- contacts
     )
+    returning id
         """
-        return Sql.exec(query=query, args=args)
 
-    @staticmethod
-    def update_profile(args):
-        query = """
-    update person
-    set firstName = {first_name}
-      , lastName = {last_name}
-      , "role" = coalesce({role}, 0)
-      , "birthDate" = coalesce({birth_day}, now())
-      , company = {company}
-      , about = {about}
-      , photo = {photo}
-      , city = {city}
-      , contacts = {contacts}
-    where id = {id_user}
-        """
         return Sql.exec(query=query, args=args)

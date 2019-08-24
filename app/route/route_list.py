@@ -8,8 +8,8 @@ from app.route.route_event import Event, EventAll, EventAdd, EventActive
 ROUTES = {
     Register: '/register',
     Auth: '/auth',
-    Profile: '/profile/<int:id_user>',
-    InfoUser: '/info/<int:id_nom>/<string:id_user>',
+    Profile: '/user/<int:user_id>',
+   # InfoUser: '/info/<int:id_nom>/<string:id_user>',
     Lunch: '/lunch',
     LunchAll: '/lunch/all',
     Event: '/event',

@@ -10,12 +10,12 @@ class Profile(BaseRouter):
         super().__init__()
         self.args = [names.ID_USER]
 
-    def get(self, id_user):
+    def get(self, user_id):
         args = {
-            names.ID_USER: id_user
+            names.ID_USER: user_id
         }
         answer = get_profile(args)
-        return answer or {}
+        return answer or {}, 200, {'Access-Control-Allow-Origin': '*'}
 
     def post(self):
 
@@ -35,4 +35,9 @@ class Profile(BaseRouter):
             answer = put_profile(self.data)
         except:
             pass
-        return answer or {}
+        return (answer or {})
+
+    def options(self):
+        return {'Allow': 'PUT'}, 200, \
+               {'Access-Control-Allow-Origin': '*', \
+                'Access-Control-Allow-Methods': 'PUT,GET'}
