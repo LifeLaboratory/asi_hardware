@@ -12,6 +12,11 @@ class Provider:
           from event_person ep 
           where ep.event_id = e.event_id
         ) count_person
+      , exists(
+          select 1
+          from event_person ep
+          where person_id = {user_id}
+        )
     from event e
                 """
         return Sql.exec(query=query, args=args)
