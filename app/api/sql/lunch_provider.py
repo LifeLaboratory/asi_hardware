@@ -133,16 +133,34 @@ class Provider:
         :return:
         """
         query = """
-    update lunch
-    set status={status}
-    where lunch_id in (
-      select lunch_id
+    with selected_row as (
+      select *
       from lunch
       where
         "Person" = {user_id}
         and status <> 3
-      order by "DateCreation" desc 
+      order by "DateCreation" desc
       limit 1
+    ),
+    associated_row as (
+       select *
+        from lunch
+        where "Person" in (
+          select "connectionPersonId"
+          from selected_row
+        )
+        and status <> 3
+        order by "DateCreation" desc
+        limit 1
+    )    
+    update lunch
+    set status={status}
+    where lunch_id in (
+      select lunch_id
+      from selected_row
+      union all
+      select lunch_id
+      from associated_row
     )
         """
         return Sql.exec(query=query, args=args)
