@@ -25,7 +25,8 @@ class Provider:
       about, 
       photo, 
       city, 
-      contacts
+      contacts,
+      description
     )
     values (
         {firstName} -- firstName
@@ -37,6 +38,7 @@ class Provider:
       , {photo} -- photo
       , {city} -- city
       , {contacts} -- contacts
+      , {description} -- description
     )
     returning id
         """
