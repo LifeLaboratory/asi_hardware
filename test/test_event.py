@@ -58,10 +58,21 @@ class TestEvent(unittest.TestCase):
             names.EVENT_ID: 5
         }
 
-
         result = event_put(headers)
 
         print(result)
+
+    def test_event_add(self):
+
+        headers = {
+            names.EVENT_ID: 5,
+            names.PERSON_ID: 3
+        }
+
+        result = event_add(headers)
+
+        print(result)
+
 
 if __name__ == '__main__':
     unittest.main()
