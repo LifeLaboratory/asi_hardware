@@ -63,7 +63,14 @@ class Provider:
       from Lunch lch
       where 
         status = 0
-        and "Person" <> {user_id}
+        and "Person" not in (
+          select {user_id}
+          union all 
+          select "connectionPersonId"
+          from Lunch
+          where "Person" = {user_id}
+            and "connectionPersonId" is not null
+        )
       order by "DateCreation"
       limit 1
     ),
