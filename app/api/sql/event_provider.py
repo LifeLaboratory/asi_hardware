@@ -51,13 +51,13 @@ class Provider:
         query = """
     update event 
     set
-      title = {title},
-      place = {place},
-      photo = {photo},
-      description = {description}, 
+      title = '{title}',
+      place = '{place}',
+      photo = '{photo}',
+      description = '{description}',
       max_person = {maxPerson},
-      "date" = {date}::text
-    where event_id = {eventId}
+      "date" = '{date}'::text
+    where event_id = {event_id}
                 """
         return Sql.exec(query=query, args=args)
 

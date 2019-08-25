@@ -93,3 +93,14 @@ CREATOR = 'creator'
 MAX_PERSON = 'maxPerson'
 
 PERSON_ID = 'personId'
+
+base_event = {
+  TITTLE: None,
+  PLACE: None,
+  PHOTO: None,
+  DESCRIPTION: None,
+  DATE: None,
+  CREATOR: None,
+  MAX_PERSON: None
+}
+
