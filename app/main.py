@@ -7,6 +7,7 @@ sys.path.append(os.getcwd()+'../')
 import flask
 from flask_restful import Api
 from app.route.route_list import ROUTES
+from app.config.config import workdir
 
 
 _app = flask.Flask(__name__)
@@ -21,6 +22,7 @@ def not_found(error):
 
 
 if __name__ == '__main__':
+    os.chdir(workdir)
     try:
         for route_class, route in ROUTES.items():
             api.add_resource(route_class, route)

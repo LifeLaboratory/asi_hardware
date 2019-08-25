@@ -7,3 +7,4 @@ DATABASE = {
 }
 
 HOST = "http://0.0.0.0:8080"
+workdir = "/home/dsn/Documents/asi-hack/asi_hardware_backend"
