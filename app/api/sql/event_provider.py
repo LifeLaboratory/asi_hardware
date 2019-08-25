@@ -99,3 +99,18 @@ class Provider:
                 """
         return Sql.exec(query=query, args=args)
 
+    @staticmethod
+    def event_add(args):
+        """
+        метод возвращающий данные конкретного ивента
+        :param args:
+        :return:
+        """
+        query = """
+        insert into event_person(event_id, person_id)
+        values({event_id}, {personId})
+                    """
+        return Sql.exec(query=query, args=args)
+
+
+
